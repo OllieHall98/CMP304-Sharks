@@ -9,10 +9,10 @@ public class Agent : MonoBehaviour
 {
     [SerializeField] [Range(0.1f, 25f)] private float movementSpeed = 1;
 
-    float positiveReward = 1;
-    float negativeReward = -1;
-    float speedReward = -0.01f;
-    float proximityReward = 0.05f;
+    //float positiveReward = 1;
+    //float negativeReward = -1;
+    //float speedReward = -0.01f;
+    //float proximityReward = 0.05f;
 
     [SerializeField] int iteration = 1;
 
