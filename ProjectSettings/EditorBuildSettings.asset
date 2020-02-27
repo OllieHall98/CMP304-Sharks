@@ -6,6 +6,6 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/MainLevel.unity
-    guid: 2cda990e2423bbf4892e6590ba056729
+    path: Assets/Scenes/BoatAttack.unity
+    guid: a1c5c582084de1a4cb9c32c7a7d6073d
   m_configObjects: {}

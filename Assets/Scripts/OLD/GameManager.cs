@@ -6,7 +6,8 @@ public class GameManager : MonoBehaviour
 {
     [SerializeField] private enum CameraType{Static, Follow};
     CameraType cameraType;
-    [SerializeField] private Camera followCamera, staticCamera = null;
+    [SerializeField] private Camera followCamera = null;
+    [SerializeField] private Camera staticCamera = null;
 
     // Start is called before the first frame update
     void Start()

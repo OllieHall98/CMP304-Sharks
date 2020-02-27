@@ -3,26 +3,39 @@ using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine;
 
-public class UIScript : MonoBehaviour
+namespace BoatChase
 {
-    public static UIScript UI;
-
-    [SerializeField] Text stateText;
-
-    // Start is called before the first frame update
-    void Start()
+    public class UIScript : MonoBehaviour
     {
-        UI = this;
-    }
+        public static UIScript UI;
+        [SerializeField] Text stateText = null;
+        [SerializeField] Button FSMButton = null;
+        [SerializeField] Button FuzzyButton = null;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+        void Start()
+        {
+            UI = this;
 
-    public void setStateText(string state)
-    {
-        stateText.text = "State: " + state;
+            SwitchToFSM();
+        }
+
+        public void SwitchToFSM()
+        {
+            FSMButton.interactable = false;
+            FuzzyButton.interactable = true;
+            Monster.AItechnique = Monster.AITechnique.FiniteStateMachine;
+        }
+
+        public void SwitchToFuzzyLogic()
+        {
+            FSMButton.interactable = true;
+            FuzzyButton.interactable = false;
+            Monster.AItechnique = Monster.AITechnique.FuzzyLogic;
+        }
+
+        public void setStateText(string state)
+        {
+            stateText.text = "State: " + state;
+        }
     }
 }

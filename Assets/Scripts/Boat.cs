@@ -7,8 +7,8 @@ public class Boat : MonoBehaviour
     Rigidbody rb;
 
     [Header("Speeds")] [Space(10)]
-    [SerializeField] float thrustSpeed;
-    [SerializeField] float turnSpeed;
+    [SerializeField] float thrustSpeed = 0;
+    [SerializeField] float turnSpeed = 0;
 
     // Start is called before the first frame update
     void Start()

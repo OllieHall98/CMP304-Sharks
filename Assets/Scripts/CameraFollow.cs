@@ -4,7 +4,7 @@ using System.Collections;
 public class CameraFollow : MonoBehaviour
 {
 
-    [SerializeField] Transform target;
+    [SerializeField] Transform target = null;
     [SerializeField] float smoothTime = 0.3f;
     [SerializeField] float zOffset = 15f;
 
