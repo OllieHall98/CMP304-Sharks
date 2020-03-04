@@ -63,12 +63,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\2D game assets\OLD\Agent.cs" />
+    <Compile Include="Assets\2D game assets\OLD\GameManager.cs" />
     <Compile Include="Assets\Scripts\BaseState.cs" />
     <Compile Include="Assets\Scripts\Boat.cs" />
     <Compile Include="Assets\Scripts\CameraFollow.cs" />
     <Compile Include="Assets\Scripts\Monster.cs" />
-    <Compile Include="Assets\Scripts\OLD\Agent.cs" />
-    <Compile Include="Assets\Scripts\OLD\GameManager.cs" />
     <Compile Include="Assets\Scripts\StateMachine.cs" />
     <Compile Include="Assets\Scripts\UIScript.cs" />
     <None Include="Assets\3rd Party Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Surface-Mobile.shader" />

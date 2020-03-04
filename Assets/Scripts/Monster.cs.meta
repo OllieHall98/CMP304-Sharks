@@ -3,7 +3,16 @@ guid: 4c48d9bba334ab44fb75cffe09139147
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - roamStateParameters: {fileID: 11400000, guid: 148612033764fc248aa39db14ce3247d,
+      type: 2}
+  - chaseStateParameters: {fileID: 11400000, guid: 3e15d698d43269048b8c6d5fe70ff393,
+      type: 2}
+  - searchStateParameters: {fileID: 11400000, guid: d9a4d61f24474f244a23a1ff98c9c336,
+      type: 2}
+  - raycastOrigin: {instanceID: 0}
+  - target: {instanceID: 0}
+  - DetectionLight: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

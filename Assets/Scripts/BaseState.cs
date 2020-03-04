@@ -30,6 +30,8 @@ namespace BoatChase
         Vector3 direction   = Vector3.zero;
         Quaternion targetRotation;
 
+        public float coneOfVision = 20f;
+
         float roamTime = 0;
 
         public RoamState(Monster pawn) : base(pawn) 
@@ -84,14 +86,14 @@ namespace BoatChase
 
             if (
                   //(Vector2.Distance(monster.transform.position, boatPosition) < 35)                                                     ||
-                  (Raycast(monster.transform.forward - monster.transform.right * 2, Monster.RoamStateParameters.coneOfVision * 0.4f))   ||
-                  (Raycast(monster.transform.forward - monster.transform.right, Monster.RoamStateParameters.coneOfVision * 0.6f))       ||
-                  (Raycast(monster.transform.forward - (monster.transform.right / 2), Monster.RoamStateParameters.coneOfVision * 0.8f)) ||
-                  (Raycast(monster.transform.forward, Monster.RoamStateParameters.coneOfVision))                                        ||
-                  (Raycast(monster.transform.forward + (monster.transform.right / 2), Monster.RoamStateParameters.coneOfVision * 0.8f)) ||
-                  (Raycast(monster.transform.forward + (monster.transform.right / 2), Monster.RoamStateParameters.coneOfVision * 0.8f)) ||
-                  (Raycast(monster.transform.forward + monster.transform.right, Monster.RoamStateParameters.coneOfVision * 0.6f))       ||
-                  (Raycast(monster.transform.forward + monster.transform.right * 2, Monster.RoamStateParameters.coneOfVision * 0.4f))
+                  (Raycast(monster.transform.forward - monster.transform.right * 2, coneOfVision * 0.4f))   ||
+                  (Raycast(monster.transform.forward - monster.transform.right, coneOfVision * 0.6f))       ||
+                  (Raycast(monster.transform.forward - (monster.transform.right / 2), coneOfVision * 0.8f)) ||
+                  (Raycast(monster.transform.forward, coneOfVision))                                        ||
+                  (Raycast(monster.transform.forward + (monster.transform.right / 2), coneOfVision * 0.8f)) ||
+                  (Raycast(monster.transform.forward + (monster.transform.right / 2), coneOfVision * 0.8f)) ||
+                  (Raycast(monster.transform.forward + monster.transform.right, coneOfVision * 0.6f))       ||
+                  (Raycast(monster.transform.forward + monster.transform.right * 2, coneOfVision * 0.4f))
                )
             { canSeePlayer = true; }
 
@@ -143,6 +145,9 @@ namespace BoatChase
     {
         private Rigidbody rigidbody;
 
+        public float chaseSpeedMultiplier = 3.0f;
+        public float chaseRange = 50f;
+
         public ChaseState(Monster pawn) : base(pawn) 
         {
             rigidbody = monster.GetComponent<Rigidbody>();
@@ -174,12 +179,12 @@ namespace BoatChase
             targetRotation.z = 0;
 
             monster.transform.rotation = Quaternion.Lerp(monster.transform.rotation, targetRotation, 0.1f);
-            rigidbody.AddForce(monster.transform.forward * Time.deltaTime * monster.thrustSpeed * (100 * Monster.ChaseStateParameters.chaseSpeedMultiplier));
+            rigidbody.AddForce(monster.transform.forward * Time.deltaTime * monster.thrustSpeed * (100 * chaseSpeedMultiplier));
         }
 
         bool boatEscaped()
         {
-            if (Vector2.Distance(monster.transform.position, monster.target.position) > Monster.ChaseStateParameters.chaseRange) 
+            if (Vector2.Distance(monster.transform.position, monster.target.position) > chaseRange) 
             {
                 return true; 
             }
@@ -195,6 +200,10 @@ namespace BoatChase
 
         float PlayerTrackerTimer = 0;
         float PlayerTrackClockRate = 1.0f;
+
+        public float coneOfVision = 20f;
+
+        public float searchSpeedMultiplier = 1.5f;
 
         float SearchTime = 0;
 
@@ -239,7 +248,7 @@ namespace BoatChase
             targetRotation.z = 0;
 
             monster.transform.rotation = Quaternion.Lerp(monster.transform.rotation, targetRotation, 0.1f);
-            rigidbody.AddForce(monster.transform.forward * Time.deltaTime * monster.thrustSpeed * (100 * Monster.SearchStateParameters.searchSpeedMultiplier));
+            rigidbody.AddForce(monster.transform.forward * Time.deltaTime * monster.thrustSpeed * (100 * searchSpeedMultiplier));
         }
 
         void TrackPlayer()
@@ -262,14 +271,14 @@ namespace BoatChase
 
             if (
                   //(Vector2.Distance(monster.transform.position, SearchTarget.position) < 35)                                            ||
-                  (Raycast(monster.transform.forward - monster.transform.right * 2, Monster.RoamStateParameters.coneOfVision * 0.2f))   ||
-                  (Raycast(monster.transform.forward - monster.transform.right, Monster.RoamStateParameters.coneOfVision * 0.4f))       ||
-                  (Raycast(monster.transform.forward - (monster.transform.right / 2), Monster.RoamStateParameters.coneOfVision * 0.6f)) ||
-                  (Raycast(monster.transform.forward, Monster.RoamStateParameters.coneOfVision * 0.8f))                                 ||
-                  (Raycast(monster.transform.forward + (monster.transform.right / 2), Monster.RoamStateParameters.coneOfVision * 0.6f)) ||
-                  (Raycast(monster.transform.forward + (monster.transform.right / 2), Monster.RoamStateParameters.coneOfVision * 0.4f)) ||
-                  (Raycast(monster.transform.forward + monster.transform.right, Monster.RoamStateParameters.coneOfVision * 0.2f))       ||
-                  (Raycast(monster.transform.forward + monster.transform.right * 2, Monster.RoamStateParameters.coneOfVision * 0.2f))
+                  (Raycast(monster.transform.forward - monster.transform.right * 2, coneOfVision * 0.2f))   ||
+                  (Raycast(monster.transform.forward - monster.transform.right, coneOfVision * 0.4f))       ||
+                  (Raycast(monster.transform.forward - (monster.transform.right / 2), coneOfVision * 0.6f)) ||
+                  (Raycast(monster.transform.forward, coneOfVision * 0.8f))                                 ||
+                  (Raycast(monster.transform.forward + (monster.transform.right / 2), coneOfVision * 0.6f)) ||
+                  (Raycast(monster.transform.forward + (monster.transform.right / 2), coneOfVision * 0.4f)) ||
+                  (Raycast(monster.transform.forward + monster.transform.right, coneOfVision * 0.2f))       ||
+                  (Raycast(monster.transform.forward + monster.transform.right * 2, coneOfVision * 0.2f))
                )
             { canSeePlayer = true; }
 
@@ -300,24 +309,24 @@ namespace BoatChase
         }
     }
 
-    [CreateAssetMenu(fileName = "Roam State Parameters", menuName = "State Parameters/Roam State Parameters", order = 0)]
-    public class RoamStateParameters : ScriptableObject 
-    {
-        public float coneOfVision = 20f;
-    }
+    //[CreateAssetMenu(fileName = "Roam State Parameters", menuName = "State Parameters/Roam State Parameters", order = 0)]
+    //public class RoamStateParameters : ScriptableObject 
+    //{
+    //    public float coneOfVision = 20f;
+    //}
 
-    [CreateAssetMenu(fileName = "Chase State Parameters", menuName = "State Parameters/Chase State Parameters", order = 1)]
-    public class ChaseStateParameters : ScriptableObject
-    {
-        public float chaseSpeedMultiplier = 3.0f;
-        public float chaseRange = 50f;
-    }
+    //[CreateAssetMenu(fileName = "Chase State Parameters", menuName = "State Parameters/Chase State Parameters", order = 1)]
+    //public class ChaseStateParameters : ScriptableObject
+    //{
+    //    public float chaseSpeedMultiplier = 3.0f;
+    //    public float chaseRange = 50f;
+    //}
 
-    [CreateAssetMenu(fileName = "Search State Parameters", menuName = "State Parameters/Search State Parameters", order = 1)]
-    public class SearchStateParameters : ScriptableObject
-    {
-        public float searchSpeedMultiplier = 1.5f;
-    }
+    //[CreateAssetMenu(fileName = "Search State Parameters", menuName = "State Parameters/Search State Parameters", order = 2)]
+    //public class SearchStateParameters : ScriptableObject
+    //{
+    //    public float searchSpeedMultiplier = 1.5f;
+    //}
 
 
 }

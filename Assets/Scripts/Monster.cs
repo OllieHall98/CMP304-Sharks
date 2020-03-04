@@ -9,13 +9,13 @@ namespace BoatChase
     {
         private StateMachine stateMachine = new StateMachine();
 
-        static public RoamStateParameters RoamStateParameters;
-        static public ChaseStateParameters ChaseStateParameters;
-        static public SearchStateParameters SearchStateParameters;
+        //static public RoamStateParameters RoamStateParameters = null;
+        //static public ChaseStateParameters ChaseStateParameters = null;
+        //static public SearchStateParameters SearchStateParameters = null;
 
-        [SerializeField] private RoamStateParameters roamStateParameters = null;
-        [SerializeField] private ChaseStateParameters chaseStateParameters = null;
-        [SerializeField] private SearchStateParameters searchStateParameters = null;
+        //[SerializeField] private RoamStateParameters roamStateParameters = null;
+        //[SerializeField] private ChaseStateParameters chaseStateParameters = null;
+        //[SerializeField] private SearchStateParameters searchStateParameters = null;
 
         [SerializeField] public float thrustSpeed = 10f;
         [SerializeField] public Transform raycastOrigin;
@@ -29,9 +29,13 @@ namespace BoatChase
         {
             AItechnique = AITechnique.FiniteStateMachine;
 
-            RoamStateParameters = roamStateParameters;
-            ChaseStateParameters = chaseStateParameters;
-            SearchStateParameters = searchStateParameters;
+            //RoamStateParameters = roamStateParameters;
+            //ChaseStateParameters = chaseStateParameters;
+            //SearchStateParameters = searchStateParameters;
+
+            //if (roamStateParameters == null) { throw new Exception("roamStateParameters should not be null"); }
+            //if (chaseStateParameters == null) { throw new Exception("chaseStateParameters should not be null"); }
+            //if (searchStateParameters == null) { throw new Exception("searchStateParameters should not be null"); }
 
             Dictionary<Type, BaseState> states = new Dictionary<Type, BaseState>()
             {

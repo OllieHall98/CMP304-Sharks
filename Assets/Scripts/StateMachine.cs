@@ -23,10 +23,7 @@ namespace BoatChase
         {
             var nextState = CurrentState.Update();
 
-            if (nextState != null && nextState != CurrentState.GetType())
-            {
-                ChangeState(nextState);
-            }
+            if (nextState != null && nextState != CurrentState.GetType()){ ChangeState(nextState); }
         }
 
         private void ChangeState(Type nextState)
