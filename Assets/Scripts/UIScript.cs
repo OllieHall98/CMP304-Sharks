@@ -12,11 +12,48 @@ namespace BoatChase
         [SerializeField] Button FSMButton = null;
         [SerializeField] Button FuzzyButton = null;
 
+        [SerializeField] Camera DynamicCamera = null;
+        [SerializeField] Camera StaticCamera = null;
+
+
         void Start()
         {
+            Application.targetFrameRate = 60;
+            QualitySettings.vSyncCount = 0;
+
             UI = this;
 
-            SwitchToFSM();
+            GameObject MenuState = GameObject.Find("StateManager");
+
+            if (MenuState != null)
+            {
+                if (MenuState.GetComponent<MenuScript>().mode == MenuScript.Mode.FSM) { SwitchToFSM(); }
+                else if (MenuState.GetComponent<MenuScript>().mode == MenuScript.Mode.Fuzzy) { SwitchToFuzzyLogic(); }
+
+                Destroy(MenuState);
+            }
+            else SwitchToFSM();
+        }
+
+        public void SwitchCamera()
+        {
+            if(DynamicCamera.isActiveAndEnabled) 
+            { 
+                DynamicCamera.enabled = false;
+                DynamicCamera.tag = null;
+
+                StaticCamera.enabled = true;
+                StaticCamera.tag = "MainCamera";
+            }
+            else 
+            { 
+                StaticCamera.enabled = false;
+                StaticCamera.tag = null;
+
+
+                DynamicCamera.enabled = true;
+                DynamicCamera.tag = "MainCamera";
+            }
         }
 
         public void SwitchToFSM()

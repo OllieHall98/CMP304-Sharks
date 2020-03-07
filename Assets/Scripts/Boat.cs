@@ -4,34 +4,39 @@ using UnityEngine;
 
 public class Boat : MonoBehaviour
 {
-    Rigidbody rb;
+    Rigidbody rigidbody = null;
 
     [Header("Speeds")] [Space(10)]
     [SerializeField] float thrustSpeed = 0;
     [SerializeField] float turnSpeed = 0;
 
+    float thrustAxis, turnAxis;
+
     // Start is called before the first frame update
     void Start()
     {
-        rb = GetComponent<Rigidbody>();
+        rigidbody = GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
     void Update()
+    {
+        thrustAxis = Input.GetAxis("Vertical");
+        turnAxis = Input.GetAxis("Horizontal");
+    }
+
+    private void FixedUpdate()
     {
         ApplyForces();
     }
 
     void ApplyForces()
     {
-        float thrustValue = Input.GetAxis("Vertical");
-        float turnValue = Input.GetAxis("Horizontal");
+        rigidbody.AddForce(transform.forward * thrustSpeed * thrustAxis * 120 * Time.fixedDeltaTime);
 
-        rb.AddForce(transform.forward * thrustSpeed * thrustValue);
-
-        if (rb.velocity.magnitude > 5.0f)
+        if (rigidbody.velocity.magnitude > 5.0f)
         { 
-            rb.AddTorque(transform.up * turnSpeed * turnValue);
+            rigidbody.AddTorque(transform.up * turnSpeed * turnAxis * 120 * Time.fixedDeltaTime);
         }
     }
 }

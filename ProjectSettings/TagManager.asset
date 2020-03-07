@@ -7,6 +7,8 @@ TagManager:
   - Water
   - Boat
   - Monster
+  - Wall
+  - Shark
   layers:
   - Default
   - TransparentFX
